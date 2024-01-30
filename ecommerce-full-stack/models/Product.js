@@ -11,5 +11,5 @@ const productSchema = new mongoose.Schema(
     { timestamps: true } // sirve para saber cuando un producto (dato) fue creado
 )
 
-const Product = mongoose.model.Product || mongoose.model('Product', productSchema)
-export default Product
+const Products = mongoose.model.Products || mongoose.model('Products', productSchema)
+export default Products
