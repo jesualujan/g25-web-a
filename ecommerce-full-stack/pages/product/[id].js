@@ -19,55 +19,55 @@ const ProductPage = () => {
         return <div>Product not found</div>
     }
     return (
-        <Container maxW={'container.xl'} mt={2}>
-            <SimpleGrid column={[1,2]} spacing={2}>
-                <Flex>
-                    <Image src=
-                    {
-                    `/images/${product.image}`}
-                    rounded={'md'}
-                    fit={'cover'}
-                    alt={product.description}
-                    align={'center'}
-                    h={'100%'}
-                    w={{base:'100%', sm: '400px', lg: '500px'}
-                     }
-                    />
-                </Flex>
-                <Stack spacing={{base: 6, md:10}}>
-                    <Box>
-                        <Heading
-                        lineHeight={1.1}
-                        fontWeight={600}
-                        fontSize={{base: '2xl', sm:'4xl', lg:'5xl'}}
-                        >
-                            {product.title}
-                            </Heading>
-                        <Text
-                        color={useColorModeValue('gray.900', 'gray.400')}
-                        fontWeight={300}
-                        fontSize={'2xl'}
-                        >
-                            {`$ ${product.price} USD `}
-                            </Text>
-                    </Box>
-                    <Text
-                    color={useColorModeValue('gray.500', 'gray.300')}
-                    fontSize={'lg'}
+        <Container maxW={'container.xl'} mt={2}> 
+        <SimpleGrid columns={[1,2]} spacing={2}>
+            <Flex>
+                <Image src=
+                {
+                `/images/${product.image}`} 
+                rounded={'md'} 
+                fit={'cover'} 
+                alt={product.title}
+                align={'center'}
+                h={'100%'}
+                w={{base:'100%', sm:'400px', lg: '500px' }
+                }
+                />
+            </Flex>
+            <Stack spacing={{base:6, md:10}}>
+                <Box> {/* BOX ES COMO UN DIV EN CHAKRA UI =) */}
+                  <Heading 
+                  lineHeight={1.1}
+                  fontWeight={600}
+                  fontSize={{base:'2x1',sm:'4xl', lg:'5xl'}}>
+                    {product.title}
+                  </Heading>
+                  <Text
+                  color={useColorModeValue('gray.900', 'gray.400')}
+                  fontWeight={300}
+                  fontSize={'2xl'}
+                  >
+                    {`$ ${product.price} USD`}
+                  </Text>
+                </Box>
+                  <Text
+                  color={useColorModeValue('gray.500', 'gray.400')}
+                  fontSize={'lg'}
+                  >
+                    {product.description}
+                  </Text>
+                  <Flex flexGrow={1} alignItems={'end'}>
+                    <Button rounded={'md'} w={'full'} mt={8} size={'lg'} py={'7'} 
+                      bg={useColorModeValue('gray.900', 'gray.50')}
+                      color={useColorModeValue('white', 'gray.900')}
+                      textTransform={'uppercase'}
                     >
-                        {product.description}
-                    </Text>
-                    <Flex flexGrow={1} alignItems={'end'}>
-                        <Button
-                         rounded={'md'} w={'full'} mt={8} size={'lg'} py={'7'}
-                         bg={useColorModeValue('gray.900', 'gray.50')}
-                         color={useColorModeValue('white', 'gray.900')}
-                         textTransform={'uppercase'}
-                        >Add to Cart</Button>
-                    </Flex>
-                </Stack>
-            </SimpleGrid>
-        </Container>
+                        Add to Cart
+                    </Button>
+                  </Flex>
+            </Stack>
+        </SimpleGrid>
+    </Container>
     )
 }
 
