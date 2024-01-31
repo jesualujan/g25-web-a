@@ -32,7 +32,7 @@ const Layout = ({ children }) => {
            borderColor={useColorModeValue('gray.200', 'gray.900')}
            align={'center'}
             >
-            <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
+            <Flex flex={{ base: 1 }} justify={{ base: 'start', md: 'start' }}>
             <Text fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>
               Ecommerce
             </Text>
