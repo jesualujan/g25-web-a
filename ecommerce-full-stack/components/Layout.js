@@ -1,5 +1,6 @@
 import React from 'react'
 import Head  from 'next/head'
+import Link from 'next/link'
 import { 
   Box, 
   Flex, 
@@ -7,8 +8,7 @@ import {
   Stack, 
   Button, 
   useColorMode, 
-  useColorModeValue,
-  Link } from '@chakra-ui/react'
+  useColorModeValue } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import CartIcon from './CartIcon'
 
