@@ -10,6 +10,8 @@ import React from 'react'
 import { useRouter } from 'next/router'
 import { data } from '../../utils/data'
 import { Container, SimpleGrid, Flex, Image, Heading, Stack, Box, Text, useColorModeValue, Button} from '@chakra-ui/react'
+import db from '../../utils/db'
+import Product from '../../models/Products'
 
 const ProductPage = () => { 
     const router = useRouter() // es un hook de next 
@@ -69,6 +71,20 @@ const ProductPage = () => {
         </SimpleGrid>
     </Container>
     )
+}
+
+export async function getServerSideProps(){
+  const {params} = context
+  const {id} = params
+  await db.connect()
+  const product = await Product.findOne({id}).lean()
+  await db.disconnect()
+  
+  return {
+    props: {
+      product: db.convertDocToObj(product)
+    }
+  }
 }
 
 export default ProductPage
