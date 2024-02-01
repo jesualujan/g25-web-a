@@ -33,6 +33,13 @@ async function disconnect(){
     }
 }
 
-const db = { connect, disconnect }
+function convertDocToObj(doc) {
+    doc._id = doc._id.toString() // convierte el valor de la propiedad "_id" a una cadena o string
+    doc.createdAt = doc.createdAt.toString() // convierte el valor de la propiedad "createdAt" a una cadena o string
+    doc.updatedAt = doc.updatedAt.toString() // convierte el valor de la propiedad "updatedAt" a una cadena o string
+    return doc // devuelve el objeto modificado
+}
+
+const db = { connect, disconnect, convertDocToObj }
 
 export default db
