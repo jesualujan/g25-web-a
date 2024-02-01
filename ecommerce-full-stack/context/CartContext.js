@@ -14,7 +14,7 @@ const cartReducer = (state, action) => {
         case "REMOVE_FROM_CART":
             return {
                 ...state,
-                cart: state.cart.filter(item => item._id !==  action.payload)
+                cart: state.cart.filter(item => item.id !==  action.payload)
             }
             default: 
                 return state;
@@ -24,18 +24,18 @@ const cartReducer = (state, action) => {
 
 const CartContext = createContext()
     
-const CartProvider = ({ children}) => {
+const CartProvider = ({ children }) => {
     const [state, dispatch] = useReducer(cartReducer, initialState)
 
     const addToCart = (item) => {
        dispatch({type: "ADD_TO_CART" , payload: item})
     }
 
-    const removeFromCart = (item) => {
-        dispatch({type: "REMOVE_FROM_CART" , payload: item._id})
+    const removeFromCart = (itemId) => {
+        dispatch({type: "REMOVE_FROM_CART" , payload: itemId})
     }
     return (
-        <CartContext.Provider value={{ state, addToCart, removeFromCart}}>
+        <CartContext.Provider value={{...state, addToCart, removeFromCart}}>
             {children}
         </CartContext.Provider>
     )
