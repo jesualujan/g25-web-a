@@ -7,8 +7,10 @@ import {
   Stack, 
   Button, 
   useColorMode, 
-  useColorModeValue} from '@chakra-ui/react'
+  useColorModeValue,
+  Link } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import CartIcon from './CartIcon'
 
 const Layout = ({ children }) => {
     const {colorMode,toggleColorMode} = useColorMode()
@@ -31,9 +33,14 @@ const Layout = ({ children }) => {
            align={'center'}
             >
             <Flex flex={{ base: 1 }} justify={{ base: 'start', md: 'start' }}>
-            <Text fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>
-              Ecommerce
-            </Text>
+              {/* passHref permite que el href de la ruta sea pasado al componente hijo
+                  es una forma de hacer referencia a un enlace
+              */}
+              <Link href={'/'} passHref>
+                <Text fontFamily={'heading'} color={useColorModeValue('gray.800', 'white')}>
+                  Ecommerce
+                </Text>
+              </Link>
           </Flex>
           <Stack
             flex={{ base: 1, md: 0 }}
@@ -44,6 +51,9 @@ const Layout = ({ children }) => {
             <Button onClick={toggleColorMode}>
               {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
             </Button>
+            <Link href='/cart'  passHref>
+            <CartIcon />
+            </Link>
             <Button as={'a'} fontSize={'sm'} fontWeight={400} variant={'link'} href={'#'}>
               Sign in
             </Button>
