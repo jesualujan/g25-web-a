@@ -6,17 +6,17 @@
 // El uso de un identificador único ([id]) en el nombre del archivo ayuda a 
 // garantizar que no haya conflictos con otros archivos en el mismo directorio o proyecto.
 
-import React from 'react'
+import React, {useContext} from 'react'
 import { useRouter } from 'next/router'
 import { data } from '../../utils/data'
 import { Container, SimpleGrid, Flex, Image, Heading, Stack, Box, Text, useColorModeValue, Button} from '@chakra-ui/react'
 import db from '../../utils/db'
 import Product from '../../models/Products'
 
-const ProductPage = () => { 
+const ProductPage = (props) => { 
     const router = useRouter() // es un hook de next 
     const {id}= router.query
-    const product = data.products.find((product) => product.id === parseInt(id))
+    const {product} = props
     if (!product) {
         return <div>Product not found</div>
     }
@@ -73,7 +73,7 @@ const ProductPage = () => {
     )
 }
 
-export async function getServerSideProps(){
+export async function getServerSideProps(context){
   const {params} = context
   const {id} = params
   await db.connect()
