@@ -23,7 +23,6 @@ export default function Home() {
       setLoading(false)
   }
 
-  
   if(error) {
     return <div>Error al cargar...</div>
   }
