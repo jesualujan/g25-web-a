@@ -8,14 +8,16 @@
 
 import React, {useContext} from 'react'
 import { useRouter } from 'next/router'
-import { data } from '../../utils/data'
+// import { data } from '../../utils/data'
 import { Container, SimpleGrid, Flex, Image, Heading, Stack, Box, Text, useColorModeValue, Button} from '@chakra-ui/react'
 import db from '../../utils/db'
 import Product from '../../models/Products'
+import { CartContext } from '../../context/CartContext'
 
 const ProductPage = (props) => { 
     const router = useRouter() // es un hook de next 
     const {id}= router.query
+    const {addToCart } = useContext(CartContext)
     const {product} = props
     if (!product) {
         return <div>Product not found</div>
@@ -63,6 +65,7 @@ const ProductPage = (props) => {
                       bg={useColorModeValue('gray.900', 'gray.50')}
                       color={useColorModeValue('white', 'gray.900')}
                       textTransform={'uppercase'}
+                      onClick={() => addToCart(product)}
                     >
                         Add to Cart
                     </Button>
