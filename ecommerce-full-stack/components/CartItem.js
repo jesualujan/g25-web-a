@@ -1,3 +1,4 @@
+// Renombramos el componente
 import React, {useContext} from 'react'
 import {
     Box,
