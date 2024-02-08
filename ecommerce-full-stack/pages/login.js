@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
     Container,
     Stack,
@@ -17,6 +17,22 @@ import {
 import Link from 'next/link'
 
 const LoginPage = () => {
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
+    const [loading, setLoading] = useState(false)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+
+        // to do: call login function
+        setEmail('')
+        setPassword('')
+    }
+
+
+
+
   return (
     <Container maxW="lg" py={{base: "12", md:"24"}} px={{base: "0", sm:"8"}}>
         <Stack spacing="8">
@@ -38,7 +54,7 @@ const LoginPage = () => {
         boxShadow={{base: "none", sm:useColorModeValue("md", "md-dark")}}
         borderRadius={{base: "none", sm: "xl"}}
         >
-            <form>
+            <form onSubmit={handleSubmit}>
                 <Stack spacing="6">
                     <Stack spacing="5">
                         <FormControl> 
@@ -47,6 +63,7 @@ const LoginPage = () => {
                             id="email"
                             type="email"
                             placeholder="Enter your email"
+                            onChange={(e) => setEmail(e.target.value)}
                             />
                         </FormControl>
                         <FormControl> 
@@ -55,6 +72,7 @@ const LoginPage = () => {
                              id="password"
                              type="password"
                              placeholder="Enter your password"
+                             onChange={(e) => setPassword(e.target.value)}
                             />
                         </FormControl>
                     </Stack>
