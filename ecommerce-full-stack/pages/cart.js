@@ -14,8 +14,8 @@ import OrderSummary from '../components/OrderSummary'
 const CartPage = () => {
     const {cart} = useContext(CartContext)
 
-    const calculateTotal = () => {
-      return cartItem.reduce((acc,item) => acc + item.price, 0)
+    const calculateTotal = (cartItems) => {
+        return cartItems.reduce((acc,item) => acc + item.price, 0)
     }
 
   return (
@@ -53,7 +53,7 @@ const CartPage = () => {
                     </Stack>
 
                         <Flex direction="column" align="center" flex="1">
-                            <OrderSummary />
+                            <OrderSummary total={calculateTotal(cart)}/>
                         </Flex>
                 </Stack>
             </>
