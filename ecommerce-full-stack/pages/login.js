@@ -15,6 +15,12 @@ import {
     FormHelperText
 } from '@chakra-ui/react'
 import Link from 'next/link'
+import * as yup from 'yup'
+
+const loginSchema = yup.object().shape({
+    email: yup.string().email('Invalid Email').required('Email is required'),
+    password: yup.string().min(8,'Password must be at least 8 characters').required('Password is required')
+})
 
 const LoginPage = () => {
     const [email, setEmail] = useState('')
@@ -22,8 +28,29 @@ const LoginPage = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+
+        //validate form
+        try {
+            await loginSchema.validate({
+                email,
+                password
+            }, {
+                abortEarly: false
+            })
+        }catch(err){
+            const validationError = {}
+            if(err instanceof yup.ValidationError){
+                err.inner.forEach(({path, message}) => {
+                    validationError[path] = message
+                })
+            }
+                setError(validationError)
+                return
+        }
+
+
 
         // to do: call login function
         setEmail('')
@@ -65,6 +92,7 @@ const LoginPage = () => {
                             placeholder="Enter your email"
                             onChange={(e) => setEmail(e.target.value)}
                             />
+                            <FormHelperText color={"red.600"} id="email-herlper-text">{error.email}</FormHelperText>
                         </FormControl>
                         <FormControl> 
                             <FormLabel htmlFor="password">Password</FormLabel>
@@ -74,6 +102,7 @@ const LoginPage = () => {
                              placeholder="Enter your password"
                              onChange={(e) => setPassword(e.target.value)}
                             />
+                            <FormHelperText color={"red.600"} id="password-herlper-text">{error.password}</FormHelperText>
                         </FormControl>
                     </Stack>
                     <HStack justify="space-between">
