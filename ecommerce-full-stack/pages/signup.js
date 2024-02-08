@@ -15,6 +15,14 @@ import {
     FormHelperText
 } from '@chakra-ui/react'
 import Link from 'next/link'
+import * as yup from 'yup'
+
+    const signUpSchema = yup.object().shape({   
+        name: yup.string().required('Name is required'),
+        email: yup.string().email('Invalid Email').required('Email is required'),
+        password: yup.string().min(8,'Password must be at least 8 characters').required('Password is required')
+    })
+
 
 const SignUpPage = () => {
     const [name, setName] = useState('')
@@ -23,8 +31,28 @@ const SignUpPage = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
+
+        //validate form
+        try{    
+            await signUpSchema.validate({
+                name,
+                email,
+                password
+            }, {
+                abortEarly: false
+            })
+        }catch(err){
+            const validationErrror = {}
+            if (err instanceof yup.ValidationError){
+                err.inner.forEach(({path, message}) => {
+                    validationErrror[path] = message
+                })
+            }
+            setError(validationErrror)
+            return
+        }
 
         // to do: call login function
         setEmail('')
@@ -66,6 +94,7 @@ const SignUpPage = () => {
                             placeholder="Enter your Full Name"
                             onChange={(e) => setName(e.target.value)}
                             />
+                            <FormHelperText color={"red.600"} id="name-helper-text">{error.name}</FormHelperText>
                         </FormControl>
 
                         <FormControl> 
@@ -76,6 +105,7 @@ const SignUpPage = () => {
                             placeholder="Enter your email"
                             onChange={(e) => setEmail(e.target.value)}
                             />
+                            <FormHelperText color={"red.600"} id="email-helper-text">{error.email}</FormHelperText>
                         </FormControl>
                         <FormControl> 
                             <FormLabel htmlFor="password">Password</FormLabel>
@@ -85,6 +115,7 @@ const SignUpPage = () => {
                              placeholder="Enter your password"
                              onChange={(e) => setPassword(e.target.value)}
                             />
+                            <FormHelperText color={"red.600"} id="password-helper-text">{error.password}</FormHelperText>
                         </FormControl>
                     </Stack>
                     <Stack>
