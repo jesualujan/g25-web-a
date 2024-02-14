@@ -2,6 +2,9 @@ import {NextAuth} from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
 export default NextAuth ({
+    session: {
+        strategy: "jwt",
+    },
     providers: [
         CredentialsProvider({
             id: 'credentials',
@@ -9,10 +12,11 @@ export default NextAuth ({
             credentials: {},
 
             async authorize(credentials) {
+                    // conexión directa a la base de datos
                 const authResponse = await fetch("/users/login", {
                   method: 'POST',
                   headers: { 
-                    "Content-Type": "application/json" 
+                    "Content-Type": "application/json" ,
                       },
                   body: JSON.stringify(credentials),
                 })
@@ -27,9 +31,10 @@ export default NextAuth ({
 
         secret: process.env.JWT_SECRET,
         pages: {
-            signIn: "/login"
+            signIn: "/login",
         },
-
+        // determina que pasamos a la sesión
+        // next solo retorna un correo electrónico
         callbacks: {
             jwt: async ({token, user}) => {
                 user && (token.user = user)
