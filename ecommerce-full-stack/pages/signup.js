@@ -16,6 +16,8 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import * as yup from 'yup'
+import {signIn} from 'next-auth/react'
+
 
     const signUpSchema = yup.object().shape({   
         name: yup.string().required('Name is required'),
@@ -53,6 +55,35 @@ const SignUpPage = () => {
             setError(validationErrror)
             return
         }
+
+        fetch('/api/auth/signup', {
+            method: 'POST',
+            headers: { 
+              "Content-Type": "application/json" 
+                },
+            body: JSON.stringify({
+                name: name,
+                email: email,
+                password: password,
+            }),
+        }).then(res => {
+            if(response.status === 201){
+                console.log('user created succesfully')
+                signIn('credentials', {
+                    email: email,
+                    password: password,
+                    callbackUrl: '/',
+                    redirect: true,
+                }).then((result) => console.log(result))
+                  .catch( err => {
+                    setError({api: err.toString()})
+                  })
+            }else {
+                console.log("error creating user")
+                setError ({api: "Could not create user, please try again later"})
+            }
+        }).catch(error => console.log(('Signup API Error:', error)))
+
 
         // to do: call login function
         setEmail('')
