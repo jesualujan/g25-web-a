@@ -1,6 +1,6 @@
 import {createWrapper} from 'next-redux-wrapper';
 import {reducer} from './reducer'
-import {configureStore} from 'redux/toolkit'
+import {configureStore} from '@reduxjs/toolkit'
 
 
 
