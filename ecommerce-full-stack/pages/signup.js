@@ -64,9 +64,9 @@ const SignUpPage = () => {
             body: JSON.stringify({
                 name: name,
                 email: email,
-                password: password,
-            }),
-        }).then(res => {
+                password: password
+            })
+        }).then(response => {
             if(response.status === 201){
                 console.log('user created succesfully')
                 signIn('credentials', {
