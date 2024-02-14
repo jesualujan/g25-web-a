@@ -10,7 +10,7 @@ const initialState = {
         address: '',
         city: '',
         postalCode: '',
-        country: '',
+        country: ''
     }
 }
 
