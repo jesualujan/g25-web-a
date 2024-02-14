@@ -3,6 +3,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import Layout from "../components/Layout";
 import { CartProvider } from "../context/CartContext";
 import { SessionProvider } from "next-auth/react";
+import { Provider } from "react-redux";
 import { wrapper } from "../redux/store";
 
 export default function App({ Component, pageProps:{ session, ...pageProps} }) {
