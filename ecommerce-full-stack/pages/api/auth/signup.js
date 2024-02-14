@@ -11,7 +11,7 @@ async function handler(req,res){
     const { name, email, password } = data
 
     if( !email || !email.includes('@') || !password || password.trim().lenght < 7 ){
-        rest.status(422).json({
+        res.status(422).json({
             message: 'Invalid input'
         })
         return
@@ -31,9 +31,9 @@ async function handler(req,res){
     // crear usuario
     const hashedPassword = await hashPassword(password)
     const result = await User.create({
-        name: name,
         email: email,
-        password: hashedPassword
+        password: hashedPassword,
+        name: name
     })
     res.status(201).json({message: 'User created!'})
     db.disconnect()
