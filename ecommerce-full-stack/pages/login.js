@@ -36,7 +36,7 @@ const LoginPage = () => {
         try {
             await loginSchema.validate({
                 email,
-                password
+                password,
             }, {
                 abortEarly: false
             })
@@ -97,6 +97,7 @@ const LoginPage = () => {
                         <FormControl> 
                             <FormLabel htmlFor="email">Email Address</FormLabel>
                             <Input 
+                            value={email}
                             id="email"
                             type="email"
                             placeholder="Enter your email"
@@ -107,6 +108,7 @@ const LoginPage = () => {
                         <FormControl> 
                             <FormLabel htmlFor="password">Password</FormLabel>
                             <Input 
+                             value={password}
                              id="password"
                              type="password"
                              placeholder="Enter your password"

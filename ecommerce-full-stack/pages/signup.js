@@ -120,6 +120,7 @@ const SignUpPage = () => {
                     <FormControl> 
                             <FormLabel htmlFor="email">Full Name</FormLabel>
                             <Input 
+                            value={name}
                             id="name" 
                             type="text"
                             placeholder="Enter your Full Name"
@@ -131,6 +132,7 @@ const SignUpPage = () => {
                         <FormControl> 
                             <FormLabel htmlFor="email">Email Address</FormLabel>
                             <Input 
+                            value={email}
                             id="email"
                             type="email"
                             placeholder="Enter your email"
@@ -141,6 +143,7 @@ const SignUpPage = () => {
                         <FormControl> 
                             <FormLabel htmlFor="password">Password</FormLabel>
                             <Input 
+                             value={password}
                              id="password"
                              type="password"
                              placeholder="Enter your password"
