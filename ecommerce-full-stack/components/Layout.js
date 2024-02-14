@@ -11,9 +11,11 @@ import {
   useColorModeValue } from '@chakra-ui/react'
 import { MoonIcon, SunIcon } from '@chakra-ui/icons'
 import CartIcon from './CartIcon'
+import { useSession, signOut} from 'next-auth/react'
 
 const Layout = ({ children }) => {
     const {colorMode,toggleColorMode} = useColorMode()
+    const {data: session, status} = useSession()
 
   return (
     <>
@@ -54,25 +56,43 @@ const Layout = ({ children }) => {
             <Link href='/cart'  passHref>
             <CartIcon />
             </Link>
-            <Button 
-            as={'a'} 
-            fontSize={'sm'} 
-            fontWeight={400} 
-            variant={'link'} 
-            href={'#'}>
-              Sign in
-            </Button>
-            <Button
-              display={{ base: 'none', md: 'inline-flex' }}
+            
+            { status === "authenticated" ? (
+              <Button 
+              display={"inline-flex"}
               fontSize={'sm'}
               fontWeight={600}
               color={'white'}
               bg={'pink.400'}
               href={'#'}
-              _hover={{ bg: 'pink.300' }}
-            >
-              Sign up
-            </Button>
+              onClick={() => signOut()}
+              _hover={{ bg: 'pink.300' }}>
+                Sign Out
+              </Button>
+            ) : (
+              <>
+                <Button 
+              as={'a'} 
+              fontSize={'sm'} 
+              fontWeight={400} 
+              variant={'link'} 
+              href={'/login'}>
+                Sign in
+              </Button>
+              
+              <Button
+                display={{ base: 'none', md: 'inline-flex' }}
+                fontSize={'sm'}
+                fontWeight={600}
+                color={'white'}
+                bg={'pink.400'}
+                href={'/signup'}
+                _hover={{ bg: 'pink.300' }}
+              >
+                Sign up
+              </Button>
+              </>
+            )}
           </Stack>
         </Flex>
       </Box>
