@@ -23,7 +23,7 @@ router
             isAdmin: user.isAdmin
         })
     }else {
-        res.statusCode(401).send({message: 'Invalid email or password'})
+        res.status(401).send({message: 'Invalid email or password'})
     }
   })
 
