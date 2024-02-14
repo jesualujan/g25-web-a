@@ -1,9 +1,9 @@
-import {NextAuth} from "next-auth"
+import NextAuth from "next-auth"
 import CredentialsProvider from "next-auth/providers/credentials"
 
-export default NextAuth ({
+export default NextAuth({
     session: {
-        strategy: "jwt",
+        strategy: "jwt"
     },
     providers: [
         CredentialsProvider({
