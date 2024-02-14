@@ -1,5 +1,5 @@
 import { createRouter } from 'next-connect'
-import db from '../../utils/db'
+import db from '../../../utils/db'
 import User from '../../../models/Users'
 import bcrypt from 'bcryptjs'
 import {signToken} from '../../../utils/auth'
