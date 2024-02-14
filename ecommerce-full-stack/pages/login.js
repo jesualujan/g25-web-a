@@ -16,6 +16,7 @@ import {
 } from '@chakra-ui/react'
 import Link from 'next/link'
 import * as yup from 'yup'
+import {signIn} from 'next-auth/react'
 
 const loginSchema = yup.object().shape({
     email: yup.string().email('Invalid Email').required('Email is required'),
@@ -50,6 +51,15 @@ const LoginPage = () => {
                 return
         }
 
+        const result = await signIn('credentials', {
+            email: email,
+            password: password,
+            callbackUrl: '/',
+            redirect: true,
+        })
+         if(result.error){
+            setError(result.error)
+         }
 
 
         // to do: call login function
