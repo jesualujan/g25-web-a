@@ -13,7 +13,7 @@ export default NextAuth ({
 
             async authorize(credentials) {
                     // conexión directa a la base de datos
-                const authResponse = await fetch("/users/login", {
+                const authResponse = await fetch("http://localhost:3000/api/users/login", {
                   method: 'POST',
                   headers: { 
                     "Content-Type": "application/json" ,
