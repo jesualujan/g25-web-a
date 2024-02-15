@@ -1,5 +1,8 @@
 // Un "reducer" en Redux es una función que especifica cómo cambia el estado de la aplicación en respuesta a una acción
 // Recibe el estado actual y una acción, y devulve un nuevo estado
+
+//* HYDRATE es una acción especial en next-redux-wrapper que se utiliza para sincronizar el estado
+//* del servidor con el estado del cliente en una aplicación Next.js con Redux.
 import { HYDRATE } from 'next-redux-wrapper'
 
 // creamos el estado inicial
