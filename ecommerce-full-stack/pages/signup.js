@@ -33,8 +33,8 @@ const SignUpPage = () => {
     const [error, setError] = useState('')
     const [loading, setLoading] = useState(false)
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
+    const handleSubmit = async (event) => {
+        event.preventDefault()
 
         //validate form
         try{    
