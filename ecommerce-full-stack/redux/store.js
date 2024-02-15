@@ -12,5 +12,4 @@ const makeStore = (context) =>
   });
 
   // export
-
   export const wrapper = createWrapper(makeStore, {debug: true})
