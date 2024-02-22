@@ -18,19 +18,19 @@ const CheckoutPage = () => {
   ]
 
   return (
-    <Stack spacing={4}>
-      <Progress value={activeStep} max={steps.length} size="md" mb={5} colorScheme="blue"/> 
-      <Box mx="auto">
+   <Stack spacing={4}>
+    <Progress value={activeStep} max={steps.length} size="md" mb={5} colorScheme="blue"/>
+    <Box mx="auto">
       <Card>
-         <CardHeader>
-           {steps[activeStep].name}
-         </CardHeader>
-         <CardBody>
-         {steps[activeStep].component}
-         </CardBody>
+        <CardHeader>
+          {steps[activeStep].name}
+        </CardHeader>
+        <CardBody>
+          {steps[activeStep].component}
+        </CardBody>
       </Card>
-      </Box>
-    </Stack>
+    </Box>
+   </Stack>
   )
 }
 
